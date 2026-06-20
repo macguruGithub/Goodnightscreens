@@ -6,7 +6,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var parameters = { name: $('#name').val(), phone: $('#phone').val(), message: $('#message').val(), mailSubject: "Request from Good Night Fabrics", toMail: "goodnightmosquito@gmail.com" };
-        fetch("https://script.google.com/macros/s/AKfycbxrcGdPjBezMh3x69vM1vx70SoLfs81lHYeG2hla2o-kF854_c/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbxFh_FRiAqsuOXM0PyQjxZlYsg6xVjf0HhBpHWkYT-N93zDSU9lDQOGV1kB3sgBH-ip/exec", {
             method: "POST",
             mode: "no-cors",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -30,7 +30,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var parameters = { name: $('.name').val(), phone: $('.phone').val(), email: $('.email').val(), message: $('.message').val(), mailSubject: "Request from Good Night Fabrics", toMail: "goodnightmosquito@gmail.com" };
-        fetch("https://script.google.com/macros/s/AKfycbxrcGdPjBezMh3x69vM1vx70SoLfs81lHYeG2hla2o-kF854_c/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbxFh_FRiAqsuOXM0PyQjxZlYsg6xVjf0HhBpHWkYT-N93zDSU9lDQOGV1kB3sgBH-ip/exec", {
             method: "POST",
             mode: "no-cors",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
