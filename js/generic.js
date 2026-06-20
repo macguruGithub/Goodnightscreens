@@ -5,25 +5,22 @@ $(document).ready(function () {
         /* stop form from submitting normally */
         event.preventDefault();
 
-        /* get the action attribute from the <form action=""> element */
-        var $form = $(this),
-            url = $form.attr('action');
-            var parameters = { name: $('#name').val(), phone: $('#phone').val(), message: $('#message').val(), mailSubject: "Request from Good Night Fabrics", toMail: "goodnightmosquito@gmail.com" };
-        $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbxrcGdPjBezMh3x69vM1vx70SoLfs81lHYeG2hla2o-kF854_c/exec",
+        var parameters = { name: $('#name').val(), phone: $('#phone').val(), message: $('#message').val(), mailSubject: "Request from Good Night Fabrics", toMail: "goodnightmosquito@gmail.com" };
+        fetch("https://script.google.com/macros/s/AKfycbxrcGdPjBezMh3x69vM1vx70SoLfs81lHYeG2hla2o-kF854_c/exec", {
             method: "POST",
-            data: parameters
+            mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(parameters).toString()
         })
-            .done(function (data) {
-
+            .then(function () {
                 $('#error-msg').css('color', 'green');
                 $('#error-msg').html('Email sent successfully.');
-                location.reload();
+                $('#popform')[0].reset();
+                setTimeout(function () { $('#myModal').hide(); $('#error-msg').html(''); }, 2000);
             })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-
+            .catch(function () {
                 $('#error-msg').css('color', 'red');
-                $('#error-msg').html('Falied: Please try again later or contact us.');
+                $('#error-msg').html('Failed: Please try again later or contact us.');
             });
 
     });
@@ -32,27 +29,21 @@ $(document).ready(function () {
         /* stop form from submitting normally */
         event.preventDefault();
 
-        /* get the action attribute from the <form action=""> element */
-        var $form = $(this),
-            url = $form.attr('action');
-        //alert();
-        /* Send the data using post with element id name and name2*/
         var parameters = { name: $('.name').val(), phone: $('.phone').val(), email: $('.email').val(), message: $('.message').val(), mailSubject: "Request from Good Night Fabrics", toMail: "goodnightmosquito@gmail.com" };
-        $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbxrcGdPjBezMh3x69vM1vx70SoLfs81lHYeG2hla2o-kF854_c/exec",
+        fetch("https://script.google.com/macros/s/AKfycbxrcGdPjBezMh3x69vM1vx70SoLfs81lHYeG2hla2o-kF854_c/exec", {
             method: "POST",
-            data: parameters
+            mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(parameters).toString()
         })
-            .done(function (data) {
-
+            .then(function () {
                 $('#contact-error-msg').css('color', 'green');
                 $('#contact-error-msg').html('Email sent successfully.');
-                location.reload();
+                $('#contact')[0].reset();
             })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-
+            .catch(function () {
                 $('#contact-error-msg').css('color', 'red');
-                $('#contact-error-msg').html('Falied: Please try again later or contact us.');
+                $('#contact-error-msg').html('Failed: Please try again later or contact us.');
             });
     });
 
@@ -212,11 +203,13 @@ btn.onclick = function () {
 
 span.onclick = function () {
     modal.style.display = "none";
+    $('#error-msg').html('');
 }
 
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        $('#error-msg').html('');
     }
 }
 function getMobileOperatingSystem(msgContent) {
